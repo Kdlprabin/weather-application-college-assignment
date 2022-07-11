@@ -26,9 +26,10 @@ function getDate(){
     var year = new Date().getFullYear();
 
     document.getElementById("month").innerHTML = list[monthNo];
-    document.getElementById("year").innerHTML = year;
+    document.getElementById("year").innerHTML = ", "+year;
 }
 
 getDate();
 getTime();
 getDay();
+document.getElementById('days').innerHTML =11;
