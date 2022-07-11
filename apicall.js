@@ -1,5 +1,4 @@
 //51.8098° N, 0.2377° W
-
 const api = 'e08cf201c4d31b5287a7fa1c7f1e2db4';
 
 const tempC = document.querySelector('#temperature');

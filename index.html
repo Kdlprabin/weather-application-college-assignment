@@ -9,6 +9,9 @@
 <body>
     <!--search part that can search weather data of any location-->
     <div id="searchBox" >
+        <form action="POST">
+            <input type="text" id="inputbox">
+        </form>
     </div>
     <!-- main part of the weather app  -->
     <div id="main">
@@ -16,13 +19,34 @@
             <!--the left located boxes-->
             <div class="infoBox infoBox1">
                 <!--temperature data in celsius-->
-                <p class="fontsizinglarge">27 C</p>
+                <p class="fontsizinglarge" id="temperature">_ _ C</p>
                 <p id="day" class="fontsizing2">THU</p>
                 <div class="fontsizing"><span id="month">JULY </span> <span id="day">11,</span><span id="year"> 2022</span></div>
             </div>
-            <div class="infoBox"></div>
-            <div class="infoBox"></div>
-            <div class="infoBox"></div>
+            <div class="infoBox">
+                <p class="fontsizing">Kathmandu</p>
+                <hr class="blueline">
+                <div class="secondary_info">
+                    <div class="secondaryhumidity"><p class="fontsizesmall">Humidity</p><span id="sechumidity1" class="fontsizesmall">_ _</span></div>
+                    <div class="secondarytemperature"><p class="fontsizesmall">Temperature</p><span id="sectemperature1" class="fontsizesmall">_ _</span></div>
+                </div>
+            </div>
+            <div class="infoBox">
+                <p class="fontsizing">New Delhi</p>
+                <hr class="blueline">
+                <div class="secondary_info">
+                    <div class="secondaryhumidity"><p class="fontsizesmall">Humidity</p><span id="sechumidity" class="fontsizesmall">_ _</span></div>
+                    <div class="secondarytemperature"><p class="fontsizesmall">Temperature</p><span id="sectemperature" class="fontsizesmall">_ _</span></div>
+                </div>
+            </div>
+            <div class="infoBox">
+                <p class="fontsizing">London</p>
+                <hr class="blueline">
+                <div class="secondary_info">
+                    <div class="secondaryhumidity"><p class="fontsizesmall">Humidity</p><span id="sechumidity" class="fontsizesmall">_ _</span></div>
+                    <div class="secondarytemperature"><p class="fontsizesmall">Temperature</p><span id="sectemperature" class="fontsizesmall">_ _</span></div>
+                </div>
+            </div>
         </div>
         <!--the center part having background image-->
         <div class="container2">
@@ -47,28 +71,28 @@
                     <P class="fontwhite fontsizesmall title">Wind Speed</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/windSpeed.png" alt="" class="icon"><span></span>
+                        <img src="images/windSpeed.png" alt="" class="icon"><span id="windspeed" class="fontsizing fontwhite">_ _</span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">Pressure</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/pressure.png" alt="" class="icon"><span></span>
+                        <img src="images/pressure.png" alt="" class="icon"><span id="pressure" class="fontsizing fontwhite">_ _</span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">Humidity</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/humidity.png" alt="" class="icon"><span></span>
+                        <img src="images/humidity.png" alt="" class="icon"><span id="humidity" class="fontsizing fontwhite">_ _</span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">Feels Like</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/uv.png" alt="" class="icon"><span></span>
+                        <img src="images/uv.png" alt="" class="icon"><span id="feels_like" class="fontsizing fontwhite">_ _</span>
                     </div>
                 </div>
             </div>
@@ -99,12 +123,17 @@
             <!--sunset and sunrise data here-->
             <div id="sun">
                 <p class="fontwhite fontsizing2">Sunrise</p>
-                <div class="sun"></div>
+                <div class="sun">
+                    <p id="timerise"></p>
+                </div>
                 <p class="fontwhite fontsizing2">Sunset</p>
-                <div class="sun"></div>
+                <div class="sun">
+                    <p id="timeset"></p>
+                </div>
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
     <script src="clock.js"></script>
 </body>
 </html>
