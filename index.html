@@ -4,13 +4,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weatheia</title>
+    <link rel="stylesheet" href="searchSection.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!--search part that can search weather data of any location-->
     <div id="searchBox" >
+        <p class="fontsizing">Weatheia</p>
+        <hr class="blueline">
         <form action="POST">
-            <input type="text" id="inputbox">
+            <!--Input box-->
+            <p class="fontsizesmall">For Weather Information of more location : </p>
+            <input type="text" id="inputbox" placeholder="Type here">
         </form>
     </div>
     <!-- main part of the weather app  -->
@@ -35,16 +40,16 @@
                 <p class="fontsizing">New Delhi</p>
                 <hr class="blueline">
                 <div class="secondary_info">
-                    <div class="secondaryhumidity"><p class="fontsizesmall">Humidity</p><span id="sechumidity" class="fontsizesmall">_ _</span></div>
-                    <div class="secondarytemperature"><p class="fontsizesmall">Temperature</p><span id="sectemperature" class="fontsizesmall">_ _</span></div>
+                    <div class="secondaryhumidity"><p class="fontsizesmall">Humidity</p><span id="sechumidity2" class="fontsizesmall">_ _</span></div>
+                    <div class="secondarytemperature"><p class="fontsizesmall">Temperature</p><span id="sectemperature2" class="fontsizesmall">_ _</span></div>
                 </div>
             </div>
             <div class="infoBox">
                 <p class="fontsizing">London</p>
                 <hr class="blueline">
                 <div class="secondary_info">
-                    <div class="secondaryhumidity"><p class="fontsizesmall">Humidity</p><span id="sechumidity" class="fontsizesmall">_ _</span></div>
-                    <div class="secondarytemperature"><p class="fontsizesmall">Temperature</p><span id="sectemperature" class="fontsizesmall">_ _</span></div>
+                    <div class="secondaryhumidity"><p class="fontsizesmall">Humidity</p><span id="sechumidity3" class="fontsizesmall">_ _</span></div>
+                    <div class="secondarytemperature"><p class="fontsizesmall">Temperature</p><span id="sectemperature3" class="fontsizesmall">_ _</span></div>
                 </div>
             </div>
         </div>
@@ -124,15 +129,16 @@
             <div id="sun">
                 <p class="fontwhite fontsizing2">Sunrise</p>
                 <div class="sun">
-                    <p id="timerise"></p>
+                    <p id="timerise" class="fontsizing"></p>
                 </div>
                 <p class="fontwhite fontsizing2">Sunset</p>
                 <div class="sun">
-                    <p id="timeset"></p>
+                    <p id="timeset" class="fontsizing"></p>
                 </div>
             </div>
         </div>
     </div>
+    <script src="apicall.js"></script>
     <script src="script.js"></script>
     <script src="clock.js"></script>
 </body>
