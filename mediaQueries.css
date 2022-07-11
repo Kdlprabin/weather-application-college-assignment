@@ -1,0 +1,14 @@
+@media screen and (max-width: 1350px){
+    #searchBox{
+        visibility: collapse;
+        width: 0;
+    }
+    body{
+        grid-template-columns: 0fr 1fr;        
+    }
+}
+@media screen and (max-width: 1000px){
+    #informationboxes{
+        grid-template-columns: 1fr;
+    }
+}
