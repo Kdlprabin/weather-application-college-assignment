@@ -1,70 +1,205 @@
+:root{
+    --percentage1:30%;
+    --percentage2:50%;
+    --percentage3:40%;
+    --percentage4:80%;
+}
+
 body{
     display: grid;
     grid-template-columns: 1.5fr 5fr;
+    text-shadow:  2px 2px 4px rgb(0 0 0 / 50%);
 }
 
 #searchBox{
-    background-color: #D9D9D9;
+    background-color: #edebeb;
     margin: 10px;
     border-radius: 10px;
+    height: 720px;
 }
 #main{
+    color:#00147B;
     background-color: #D9D9D9;
     margin: 10px;
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
-    border-radius: 10px;
+    border-radius: 20px;
+    width: 1200px;
+    height: 720px;
 }
 .container{
     background-color: #00147B;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 .container1{
-    background-color: #919090;
+    background-color: rgba(178, 178, 178, 0.91);
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 .container3{
     display: grid;
-    grid-template-rows: 1fr 1.5fr 1.5fr;
+    grid-template-rows: 0.5fr 1.5fr 1.4fr;
 }
 .container2{
     background-image: url(images/storm-clouds-1024x576.jpg);
     background-repeat: no-repeat;
     border-radius: 5px;
+    display: grid;
+    grid-template-rows: 2fr 2fr 4fr 4fr;
 }
 .infoBox{
-    line-height: 20px;
-    background-color: #D9D9D9;
+    line-height: 15px;
+    background-color: rgb(228, 228, 227);
     margin-top: 5px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 .infoBox1{
     margin-top: 0px;
     text-align: center;
 }
 #chanceBox{
-    background-color: #d9d9d9bc;
+    background-color: #d9d9d993;
     border-radius: 10px;
+    padding: 0px 10px 0px;
+}
+.informationBoxes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.element{
+    background-color: #eaeaea7a;
+    border-radius: 20px;
+    margin: 5px;
+    width: 250px;
+    height: 110px;
+    display: grid;
+    line-height: 2px;
+    grid-template-rows: 0.5fr 0.1fr 3fr;
+}
+.icon{
+    height: 40px;
+    margin: 10px 30px 10px;
+}
+/*chance bar setting and styling*/
+#chancebar{
+    font-weight: 800;
+    line-height: 0px;
+    display: grid;
+    padding: 0px 10px 0px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.bar{
+    background-color: white;
+    margin: 5px;
+    height: 20px;
+    border-radius: 20px;
+}
+.b1{
+    margin: 0px;
+    height: 100%;
+    width: var(--percentage1);
+    background: #0A0266;
+    border-radius: 10px;
+}
+.b2{
+    margin: 0px;
+    height: 100%;
+    width: var(--percentage2);
+    background: #0A0266;
+    border-radius: 10px;
+}
+.b3{
+    margin: 0px;
+    height: 100%;
+    width: var(--percentage3);
+    background: #0A0266;
+    border-radius: 10px;
+}
+.b4{
+    margin: 0px;
+    height: 100%;
+    width: var(--percentage4);
+    background: #0A0266;
+    border-radius: 10px;
+}
+.sun{
+    height: 50px;
+    border: 2px solid black;
+    margin: 0px 20px 0px;
+    border-radius: 10px;
+}
+/*font and line sizing and styling*/
+.blueline{
+    color: #00147B;
+    margin: 0px 20px 0px;
+}
+.lineheight{
+    line-height: 5px;
+}
+.whiteline{
+    color: white;
+    margin: 0px 20px 0px;
 }
 .fontsizing{
     text-align: center;
     font-size: 28;
 }
+.fontsizesmall{
+    font-size: 18px;
+    padding-left: 20px;
+}
 .fontsizing2{
     text-align: center;
     font-size: 32;
 }
+.title{
+    text-align: center;
+}
 .iconspace{
     margin-right: 20px;
+}
+.fontwhite{
+    color: white;
+}
+.fontsizinglarge{
+    font-size: 40;
 }
 #weatheria{
     text-align: center;
     font-size: 40;
     color: white;
 }
-@media screen and (max-width: 1100px){
+/* LiveClockPart */
+.liveClock{
+    font-size: 24;
+    text-align: center;
+    margin: 0px 110px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.liveClock div{
+    color: white;
+    display: flex;
+    background-color: slateblue;
+    flex-direction: column;
+    margin: 5px 2px 0px;
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 30%);
+}
+.liveClock div #text{
+    background-color: rgb(4, 4, 128);
+    margin: 0px;
+    padding: 5px;
+}
+.liveClock div #ampm{
+    background-color: green;
+    margin: 0px;
+    padding: 5px;
+}
+@media screen and (max-width: 1300px){
     #searchBox{
         visibility: collapse;
         width: 0;

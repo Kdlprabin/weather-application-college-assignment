@@ -16,7 +16,7 @@
             <!--the left located boxes-->
             <div class="infoBox infoBox1">
                 <!--temperature data in celsius-->
-                <p class="fontsizing">27 C</p>
+                <p class="fontsizinglarge">27 C</p>
                 <p id="day" class="fontsizing2">THU</p>
                 <div class="fontsizing"><span id="month">JULY </span> <span id="day">11,</span><span id="year"> 2022</span></div>
             </div>
@@ -27,32 +27,84 @@
         <!--the center part having background image-->
         <div class="container2">
             <h1 id="weatheria">Weatheria</h1>
-            <!--two rows for four boxes-->
-            <div class="row"></div>
-            <!--two columns-->
-                <div class="column">
-
+            <div class="liveClock">
+                <div>
+                    <span id="hours">00</span><span id="text"> Hours</span>
                 </div>
-                <div class="column">
-
+                <div>
+                    <span id="minutes">00</span><span id="text"> Minutes</span>
                 </div>
-            <div class="row"></div>
-            <!--two columns-->
-                <div class="column">
-
+                <div>
+                    <span id="seconds">00</span><span id="text"> Seconds</span>
                 </div>
-                <div class="column">
-
+                <div>
+                    <span id="ampm">AM</span>
+                </div>                
+            </div>
+            <!--two rows and columns of four boxes-->
+            <div class="informationBoxes">
+                <div class="element">
+                    <P class="fontwhite fontsizesmall title">Wind Speed</P>
+                    <hr class="whiteline">
+                    <div class="value">
+                        <img src="images/windSpeed.png" alt="" class="icon"><span></span>
+                    </div>
                 </div>
+                <div class="element">
+                    <P class="fontwhite fontsizesmall title">Pressure</P>
+                    <hr class="whiteline">
+                    <div class="value">
+                        <img src="images/pressure.png" alt="" class="icon"><span></span>
+                    </div>
+                </div>
+                <div class="element">
+                    <P class="fontwhite fontsizesmall title">Humidity</P>
+                    <hr class="whiteline">
+                    <div class="value">
+                        <img src="images/humidity.png" alt="" class="icon"><span></span>
+                    </div>
+                </div>
+                <div class="element">
+                    <P class="fontwhite fontsizesmall title">Feels Like</P>
+                    <hr class="whiteline">
+                    <div class="value">
+                        <img src="images/uv.png" alt="" class="icon"><span></span>
+                    </div>
+                </div>
+            </div>
+                <!--empty space for now-->
+            <div class="emptyspace">
+
+            </div>
         </div>
-        <div class="container container3">
+        <div class="container container3 lineheight">
             <!--Name of the city here-->
-            <div id="name"></div>
+            <div id="name">
+                <p class="fontsizing2 fontwhite"> North Hertfordshrine</p>
+                <hr class="whiteline">
+                <p class="fontsizing2 fontwhite">NORTH, UK</p>
+            </div>
             <!--Rain chance here-->
-            <div id="chanceBox"></div>
+            <div id="chanceBox">
+                <p class="fontsizesmall fontwhite">Chance of Rain</p>
+                <hr class="whiteline">
+                <!--bar showing the chance of rain in bar form-->
+                <div id="chancebar">
+                    <p>6am</p><span class="bar"><div class="b1"></div></span>
+                    <p>12am</p><span class="bar"><div class="b2"></div></span>
+                    <p>6pm</p><span class="bar"><div class="b3"></div></span>
+                    <p>12pm</p><span class="bar"><div class="b4"></div></span>
+                </div>
+            </div>
             <!--sunset and sunrise data here-->
-            <div id="sun"></div>
+            <div id="sun">
+                <p class="fontwhite fontsizing2">Sunrise</p>
+                <div class="sun"></div>
+                <p class="fontwhite fontsizing2">Sunset</p>
+                <div class="sun"></div>
+            </div>
         </div>
     </div>
+    <script src="clock.js"></script>
 </body>
 </html>
