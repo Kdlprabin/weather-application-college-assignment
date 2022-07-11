@@ -1,0 +1,66 @@
+body{
+    display: grid;
+    grid-template-columns: 1.5fr 5fr;
+}
+
+#searchBox{
+    background-color: #D9D9D9;
+    margin: 10px;
+    border-radius: 10px;
+}
+#main{
+    background-color: #D9D9D9;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    border-radius: 10px;
+}
+.container{
+    background-color: #00147B;
+    border-radius: 10px;
+}
+.container1{
+    background-color: #919090;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    border-radius: 10px;
+}
+.container3{
+    display: grid;
+    grid-template-rows: 1fr 1.5fr 1fr;
+}
+.container2{
+    background-image: url(images/storm-clouds-1024x576.jpg);
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+.infoBox{
+    background-color: #D9D9D9;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+.infoBox1{
+    margin-top: 0px;
+}
+#chanceBox{
+    background-color: #d9d9d9bc;
+    border-radius: 10px;
+}
+#month{
+    font-size: 28;
+}
+@media screen and (max-width: 1100px){
+    #searchBox{
+        visibility: collapse;
+        width: 0;
+    }
+    body{
+        grid-template-columns: 0fr 1fr;        
+    }
+}
+/* @media screen and (max-width: 800px) {
+    #main{
+        grid-template-columns: 0fr 1.5fr 1fr;
+    }
+    
+} */
