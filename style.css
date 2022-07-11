@@ -142,6 +142,14 @@ body{
     margin: 0px 20px 0px;
     border-radius: 10px;
 }
+.sun:hover{
+    color: #00147B;
+    height: 50px;
+    background-color: white;
+    border: 2px solid black;
+    margin: 0px 20px 0px;
+    border-radius: 10px;
+}
 /*font and line sizing and styling*/
 .blueline{
     background-color: #00147B;
@@ -157,6 +165,9 @@ body{
 .fontsizing{
     text-align: center;
     font-size: 28;
+}
+fontsize1{
+    font-size: 20;
 }
 .fontsizesmall{
     font-size: 18px;
