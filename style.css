@@ -6,6 +6,7 @@
 }
 
 body{
+    background-color: hsl(0, 2%, 76%);
     display: grid;
     grid-template-columns: 1.5fr 5fr;
     text-shadow:  2px 2px 4px rgb(0 0 0 / 50%);
