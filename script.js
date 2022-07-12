@@ -3,6 +3,8 @@ let long = 0.2150;
 let lat = 51.9578;
 const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
+   
+
 fetch(base)
 .then((Response)=>{
     return Response.json();
@@ -11,8 +13,8 @@ fetch(base)
     console.log(data);
     const {temp} = data.main;
     const{sunrise,sunset} = data.sys;
-    const sunriseGMT = new Date(sunrise*1000);
-    const sunsetGMT = new Date(sunset*1000);
+    const sunriseGMT = new Date(sunrise);
+    const sunsetGMT = new Date(sunset*100);
     const humidity = data.main.humidity;
     const pressure = data.main.pressure;
     const windspeed = data.wind.speed;
