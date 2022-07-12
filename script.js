@@ -17,12 +17,16 @@ fetch(base)
     const pressure = data.main.pressure;
     const windspeed = data.wind.speed;
     const feel = data.main.feels_like;
+    const desc = data.weather[0].description;
+    const direction = data.wind.deg;
 
     document.querySelector('#temperature').textContent = `${temp.toFixed(1)}  °C`;
     document.querySelector('#timerise').textContent = `${sunriseGMT.toLocaleTimeString()}`;
     document.querySelector('#timeset').textContent = `${sunsetGMT.toLocaleTimeString()}`;
     document.querySelector('#humidity').textContent =`${humidity} %`;
     document.querySelector('#pressure').textContent =`${pressure} hpa`;
-    document.querySelector('#windspeed').textContent =`${windspeed} km/h`;
+    document.querySelector('#windspeed').textContent =`${(windspeed/1000 *3600).toFixed(1)} m/s`;
     document.querySelector('#feels_like').textContent = `${feel} °C`;
+    document.querySelector('#main_weather_data').textContent = `${desc}`;
+    document.querySelector('#windDirection').textContent = `${direction} deg`;
 })

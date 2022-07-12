@@ -17,6 +17,7 @@ const api = 'e08cf201c4d31b5287a7fa1c7f1e2db4';
             return Response.json();
         })
         .then((data) => {
+            console.log(data);
             const { temp } = data.main;
             const humidity = data.main.humidity;
 
@@ -31,6 +32,7 @@ const api = 'e08cf201c4d31b5287a7fa1c7f1e2db4';
             return Response.json();
         })
         .then((data) => {
+            console.log(data)
             const {temp} = data.main;
             const humidity = data.main.humidity;
 
@@ -43,6 +45,7 @@ const api = 'e08cf201c4d31b5287a7fa1c7f1e2db4';
             return Response.json();
         })
         .then((data) => {
+            console.log(data)
             const {temp} =data.main;
             const humidity = data.main.humidity;
 
