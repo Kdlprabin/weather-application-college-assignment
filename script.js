@@ -3,12 +3,19 @@ let long = 0.2150;
 let lat = 51.9578;
 const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
-   
+//shows the time when the application was started
+document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
 
-fetch(base)
+//the initial loading of the data while starting the application
+refresh();
+
+//function which activates on clicking refresh button to show the refresh time
+function refresh(){
+    fetch(base)
 .then((Response)=>{
     return Response.json();
 })
+
 .then((data)=>{
     console.log(data);
     const {temp} = data.main;
@@ -31,4 +38,7 @@ fetch(base)
     document.querySelector('#feels_like').textContent = `${feel} °C`;
     document.querySelector('#main_weather_data').textContent = `${desc}`;
     document.querySelector('#windDirection').textContent = `${direction} deg`;
+    //takes the refresh time and shows in the html
+    document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
 })
+}
