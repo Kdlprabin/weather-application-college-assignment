@@ -16,6 +16,7 @@
     color: white;
     font-weight: 500;
     background-color: #00147B;
+    cursor: pointer;
 }
 #refresh:active{
     background-color: white;
