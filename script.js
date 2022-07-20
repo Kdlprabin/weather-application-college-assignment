@@ -4,11 +4,12 @@ let lat = 51.9578;
 const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
    
-
-fetch(base)
+function refresh(){
+    fetch(base)
 .then((Response)=>{
     return Response.json();
 })
+
 .then((data)=>{
     console.log(data);
     const {temp} = data.main;
@@ -31,4 +32,6 @@ fetch(base)
     document.querySelector('#feels_like').textContent = `${feel} °C`;
     document.querySelector('#main_weather_data').textContent = `${desc}`;
     document.querySelector('#windDirection').textContent = `${direction} deg`;
+    document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
 })
+}
