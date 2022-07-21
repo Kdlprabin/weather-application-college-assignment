@@ -11,7 +11,6 @@ body{
     grid-template-columns: 5fr 1.5fr ;
     text-shadow:  2px 2px 4px rgb(0 0 0 / 50%);
 }
-
 #searchBox{
     background-color: #edebeb;
     margin: 10px;
