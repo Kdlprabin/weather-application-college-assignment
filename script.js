@@ -6,8 +6,6 @@ const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${l
 //shows the time when the application was started
 document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
 
-//the initial loading of the data while starting the application
-refresh();
 
 //function which activates on clicking refresh button to show the refresh time
 function refresh(){
