@@ -1,11 +1,16 @@
 //51.8098° N, 0.2377° W
 let long = 0.2150;
 let lat = 51.9578;
-const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
+var base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
-//link for searching weather information by city name
-//https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=${exclude}&appid=${KEY}
+function set(){
+    var city = document.getElementById("inputbox").value;
+    //link for searching weather information by city name
+    base=`https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=${exclude}&appid=${api}`;
+    //=https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=${exclude}&appid=${KEY}
+}
 
+var info;
 //shows the time when the application was started
 document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
 
@@ -28,11 +33,7 @@ function refresh(){
         const feel = data.main.feels_like;
         const desc = data.weather[0].description;
         const direction = data.wind.deg;
-
-        function getData(){
-            const info = data.weather[0].main;
-            return info;
-        }
+        info = data.weather[0].main;
 
         document.querySelector('#temperature').textContent = `${temp.toFixed(1)}  °C`;
         document.querySelector('#timerise').textContent = `${sunriseGMT.toLocaleTimeString()}`;
