@@ -13,7 +13,7 @@ function changeImage(){
         displayImage("url('images/sunset.jpg')");
     }
     else{
-        displayImage("url('images/RainCase.jpg')")
+        displayImage("url('images/storm-clouds-1024x576.jpg')")
     }
     setTimeout(()=>{changeImage(),1000})
 }
