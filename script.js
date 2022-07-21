@@ -3,9 +3,13 @@ let long = 0.2150;
 let lat = 51.9578;
 const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
+
+//link for searching weather information by city name
+//https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=${exclude}&appid=${KEY}
+
+
 //shows the time when the application was started
 document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
-
 
 //function which activates on clicking refresh button to show the refresh time
 function refresh(){
