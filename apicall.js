@@ -55,7 +55,3 @@ const api = 'e08cf201c4d31b5287a7fa1c7f1e2db4';
             document.querySelector('#sectemperature2').textContent = `${temp.toFixed(2)} °C`;
         })
     
-//     }
-
-// }
-// );

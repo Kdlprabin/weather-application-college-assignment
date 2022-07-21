@@ -3,42 +3,48 @@ let long = 0.2150;
 let lat = 51.9578;
 const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
+//link for searching weather information by city name
+//https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=${exclude}&appid=${KEY}
+
 //shows the time when the application was started
 document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
-
-//the initial loading of the data while starting the application
-refresh();
 
 //function which activates on clicking refresh button to show the refresh time
 function refresh(){
     fetch(base)
-.then((Response)=>{
-    return Response.json();
-})
+    .then((Response)=>{
+        return Response.json();
+    })
 
-.then((data)=>{
-    console.log(data);
-    const {temp} = data.main;
-    const{sunrise,sunset} = data.sys;
-    const sunriseGMT = new Date(sunrise);
-    const sunsetGMT = new Date(sunset*100);
-    const humidity = data.main.humidity;
-    const pressure = data.main.pressure;
-    const windspeed = data.wind.speed;
-    const feel = data.main.feels_like;
-    const desc = data.weather[0].description;
-    const direction = data.wind.deg;
+    .then((data)=>{
+        console.log(data);
+        const {temp} = data.main;
+        const{sunrise,sunset} = data.sys;
+        const sunriseGMT = new Date(sunrise);
+        const sunsetGMT = new Date(sunset*100);
+        const humidity = data.main.humidity;
+        const pressure = data.main.pressure;
+        const windspeed = data.wind.speed;
+        const feel = data.main.feels_like;
+        const desc = data.weather[0].description;
+        const direction = data.wind.deg;
 
-    document.querySelector('#temperature').textContent = `${temp.toFixed(1)}  °C`;
-    document.querySelector('#timerise').textContent = `${sunriseGMT.toLocaleTimeString()}`;
-    document.querySelector('#timeset').textContent = `${sunsetGMT.toLocaleTimeString()}`;
-    document.querySelector('#humidity').textContent =`${humidity} %`;
-    document.querySelector('#pressure').textContent =`${pressure} hpa`;
-    document.querySelector('#windspeed').textContent =`${(windspeed/1000 *3600).toFixed(1)} m/s`;
-    document.querySelector('#feels_like').textContent = `${feel} °C`;
-    document.querySelector('#main_weather_data').textContent = `${desc}`;
-    document.querySelector('#windDirection').textContent = `${direction} deg`;
-    //takes the refresh time and shows in the html
-    document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
-})
+        function getData(){
+            const info = data.weather[0].main;
+            return info;
+        }
+
+        document.querySelector('#temperature').textContent = `${temp.toFixed(1)}  °C`;
+        document.querySelector('#timerise').textContent = `${sunriseGMT.toLocaleTimeString()}`;
+        document.querySelector('#timeset').textContent = `${sunsetGMT.toLocaleTimeString()}`;
+        document.querySelector('#humidity').textContent =`${humidity} %`;
+        document.querySelector('#pressure').textContent =`${pressure} hpa`;
+        document.querySelector('#windspeed').textContent =`${(windspeed/1000 *3600).toFixed(1)} m/s`;
+        document.querySelector('#feels_like').textContent = `${feel} °C`;
+        document.querySelector('#main_weather_data').textContent = `${desc}`;
+        document.querySelector('#windDirection').textContent = `${direction} deg`;
+
+        //takes the refresh time and shows in the html
+        document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
+    })
 }

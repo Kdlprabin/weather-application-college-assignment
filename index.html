@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="searchSection.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="refresh();">
     <!-- main part of the weather app  -->
     <div id="main">
         <div class="container1">
@@ -45,7 +45,7 @@
             </div>
         </div>
         <!--the center part having background image-->
-        <div class="container2">
+        <div class="container2" id="displayImage">
             <h1 id="weatheria">Weatheria</h1>
             <div class="liveClock">
                 <div>
@@ -133,7 +133,7 @@
     </div>
     <!--search part that can search weather data of any location-->
     <div id="searchBox" >
-        <p class="fontsizing">Weatheia</p>
+        <p class="fontsizing">Weatheria</p>
         <hr class="blueline">
         <form action="">
             <!--Input box-->
@@ -149,5 +149,6 @@
     <script src="apicall.js"></script>
     <script src="script.js"></script>
     <script src="clock.js"></script>
+    <script src="DisplayImage.js"></script>
 </body>
 </html>
