@@ -1,11 +1,21 @@
-@media screen and (max-width: 1350px){
+@media screen and (max-width: 1300px){
     #searchBox{
         visibility: collapse;
         width: 0;
     }
-    body{
-        grid-template-columns: 0fr 1fr;        
+    #floating_button{
+        visibility: visible;
     }
+    body{
+        width: fit-content;
+        height: fit-content;
+    }
+}
+@media screen and (min-width: 1300px){
+    #floating_button{
+        visibility: collapse;
+    }
+    
 }
 @media screen and (max-width: 1000px){
     #informationboxes{
