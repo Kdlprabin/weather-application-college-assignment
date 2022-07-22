@@ -285,6 +285,9 @@ fontsize1{
     margin: 10px;
 }
 #search{
+    border: 1px solid black;
+    color: #00147B;
+    box-shadow:   2px 2px 4px rgb(0 0 0 / 20%);
     margin: 0px 110px;
     padding: 5px;
     border-radius: 10px;
