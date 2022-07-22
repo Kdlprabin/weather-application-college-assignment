@@ -11,12 +11,6 @@
         height: fit-content;
     }
 }
-@media screen and (min-width: 1300px){
-    #floating_button{
-        visibility: collapse;
-    }
-    
-}
 @media screen and (max-width: 1000px){
     #informationboxes{
         grid-template-columns: 1fr;
