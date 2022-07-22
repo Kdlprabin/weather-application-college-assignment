@@ -17,7 +17,7 @@ const api = '43aa310cf040eb7a9bc888de93a2c9dc';
             return Response.json();
         })
         .then((data) => {
-            console.log(data);
+            // console.log(data);
             const { temp } = data.main;
             const humidity = data.main.humidity;
             const sunriseKtm = (data.sys.sunrise);
@@ -34,7 +34,7 @@ const api = '43aa310cf040eb7a9bc888de93a2c9dc';
             return Response.json();
         })
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             const {temp} = data.main;
             const humidity = data.main.humidity;
 
@@ -47,7 +47,7 @@ const api = '43aa310cf040eb7a9bc888de93a2c9dc';
             return Response.json();
         })
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             const {temp} =data.main;
             const humidity = data.main.humidity;
 

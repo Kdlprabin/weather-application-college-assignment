@@ -3,13 +3,6 @@ let long = 0.2150;
 let lat = 51.9578;
 var base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
-function set(){
-    var city = document.getElementById("inputbox").value;
-    //link for searching weather information by city name
-    base=`https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=${exclude}&appid=${api}`;
-    //=https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=${exclude}&appid=${KEY}
-}
-
 var info;
 //shows the time when the application was started
 document.querySelector('#LastRefreshed').textContent = `${new Date().toLocaleTimeString()}`;
@@ -22,7 +15,7 @@ function refresh(){
     })
 
     .then((data)=>{
-        console.log(data);
+        // console.log(data);
         const {temp} = data.main;
         const{sunrise,sunset} = data.sys;
         const sunriseGMT = new Date(sunrise);

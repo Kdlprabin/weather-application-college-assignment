@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weatheia</title>
+    <title>Weatheria</title>
     <link rel="stylesheet" href="css/mediaQueries.css">
     <link rel="stylesheet" href="css/searchSection.css">
     <link rel="stylesheet" href="css/style.css">
@@ -133,13 +133,34 @@
     </div>
     <!--search part that can search weather data of any location-->
     <div id="searchBox" >
-        <p class="fontsizing">Weatheria</p>
-        <hr class="blueline">
-        <form action="">
+        <div>
+            <p class="fontsizing">Weatheria</p>
+            <hr class="blueline">
             <!--Input box-->
-            <p class="fontsizesmall">For Weather Information of more location : </p>
-            <input type="text" id="inputbox" placeholder="Type here">
-        </form>
+                <p class="fontsizesmall">For Weather Information of more location : </p>
+                <input type="text" id="inputbox" placeholder="Type here">
+                <button id="search" onclick="Set()">search</button>
+        </div>
+        <div id="searchInfo">
+            <h2>Location:</h2><span id="searchLocation">_ _ _</span>
+            <hr class="blueline" id="linelast">
+            <div id="align">
+                <div>
+                    <p>Overall Weather: </p>
+                    <p>Humidity: </p>
+                    <p>Pressure: </p>
+                    <p>Wind Speed: </p>
+                    <p>Wind Direction: </p>
+                </div>
+                <div>
+                    <p id="searchMain">_ _ _</p>
+                    <p id="searchHumidity">_ _ _</p>
+                    <p id="searchPressure">_ _ _</p>
+                    <p id="searchWindSpeed">_ _ _</p>
+                    <p id="searchWindDirection">_ _ _</p>
+                </div>
+            </div>
+        </div>
         <div id="RefreshDiv">
             <button id="refresh" onclick="refresh();">Refresh</button>
             <p>Last refreshed:</p><span id="LastRefreshed"></span>
@@ -150,5 +171,6 @@
     <script src="javascript/script.js"></script>
     <script src="javascript/clock.js"></script>
     <script src="javascript/DisplayImage.js"></script>
+    <script src="javascript/searchbox.js"></script>
 </body>
 </html>
