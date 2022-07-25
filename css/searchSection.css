@@ -18,6 +18,10 @@
     background-color: #00147B;
     cursor: pointer;
 }
+#refresh:hover{
+    background-color: white;
+    color: #00147B;
+}
 #refresh:active{
     background-color: white;
     color: #00147B;

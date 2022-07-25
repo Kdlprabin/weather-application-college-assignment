@@ -9,7 +9,6 @@ fetch(Searchbase)
     return searchResponse.json();
 })
 .then((searchData)=>{
-    console.log(searchData);
     document.getElementById("searchLocation").innerHTML = searchData.name;
     document.getElementById("searchMain").innerHTML=searchData.weather[0].description;
     document.getElementById("searchHumidity").innerHTML=searchData.main.humidity+" %";
