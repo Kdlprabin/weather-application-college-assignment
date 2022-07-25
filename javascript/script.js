@@ -1,6 +1,8 @@
 //51.8098° N, 0.2377° W
 let long = 0.2150;
 let lat = 51.9578;
+
+//api url
 var base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
 var info;
@@ -15,11 +17,11 @@ function refresh(){
     })
 
     .then((data)=>{
-        // console.log(data);
+        console.log(data);
         const {temp} = data.main;
         const{sunrise,sunset} = data.sys;
         const sunriseGMT = new Date(sunrise);
-        const sunsetGMT = new Date(sunset*100);
+        const sunsetGMT = new Date(sunset);
         const humidity = data.main.humidity;
         const pressure = data.main.pressure;
         const windspeed = data.wind.speed;

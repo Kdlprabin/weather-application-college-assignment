@@ -24,12 +24,14 @@ function getDate(){
     list = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     var monthNo = new Date().getMonth();
     var year = new Date().getFullYear();
+    var days = new Date().getDate();
+    console.log(days)
 
     document.getElementById("month").innerHTML = list[monthNo];
     document.getElementById("year").innerHTML = ", "+year;
+    document.getElementById('days').innerHTML =days;
 }
 
 getDate();
 getTime();
 getDay();
-document.getElementById('days').innerHTML =11;

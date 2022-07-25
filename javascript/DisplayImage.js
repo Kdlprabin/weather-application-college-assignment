@@ -6,13 +6,20 @@ function displayImage(Url){
 //function to display the image according to the situation.
 function changeImage(){
     var time = new Date().getHours();    
-
+    //time based image 
+    
+    //sunrise
     if(time<8 && time>4){
         displayImage("url('images/sunrise.jpg')");
     }
+    //sunset
     else if(time<20 && time>17){
         displayImage("url('images/sunset.jpg')");
     }
+
+    //weather based image
+
+
     else if(info == "Clear"){
         if(time>8 && time<17){
             displayImage("url('images/clearsky.jpg')");

@@ -3,9 +3,6 @@
         visibility: collapse;
         width: 0;
     }
-    #floating_button{
-        visibility: visible;
-    }
     body{
         width: fit-content;
         height: fit-content;
