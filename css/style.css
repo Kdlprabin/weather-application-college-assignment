@@ -16,8 +16,8 @@ body{
     border-radius: 10px;
     grid-template-rows: 1fr 3fr 1fr;
     margin: 1%;
-    max-width: 20%;
-    height: 95%;
+    max-width: 20vw;
+    height: 95vh;
 }
 #main{
     color:#00147B;
@@ -26,7 +26,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
     border-radius: 20px;
-    height: 90%;
+    height: 95vh;
 }
 .container{
     background-color: #00147B;
