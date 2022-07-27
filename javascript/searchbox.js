@@ -3,7 +3,7 @@ function Set(){
     document.getElementById("searchLocation").innerHTML = city;
     //link for searching weather information by city name
     Searchbase="https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=43aa310cf040eb7a9bc888de93a2c9dc&units=metric";
-    //=https://api.openweathermap.org/data/2.5/onecall?q=${city}appid=${KEY}
+    //=https://api.openweathermap.org/data/2.5/weather?q=${city}appid=${KEY}
 fetch(Searchbase)
 .then((searchResponse)=>{
     return searchResponse.json();
