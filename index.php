@@ -25,6 +25,7 @@ $sunrise = $data->sys->sunrise;
 $sunset = $data->sys->sunset;
 $desc = $data->weather[0]->description;
 
+
 $conn = new mysqli('localhost','root','','weatherapp_2.0','3307');
 if($conn->connect_error){
     die();
@@ -32,7 +33,6 @@ if($conn->connect_error){
     $send_query = "INSERT INTO weather(main,temperature,feels_like,humidity,pressure,wind_speed,wind_degree,sunrise,sunset) VALUES('$desc','$temp','$feels_like','$humidity','$pressure','$wind_speed','$wind_degree','$sunrise','$sunset') ";
     $send = mysqli_query($conn,$send_query);
     if($send){
-        echo "\ndata sent";
     }else{ echo "data sending failed";}
 }
 ?>
@@ -161,11 +161,11 @@ if($conn->connect_error){
             <div id="sun">
                 <p class="fontwhite fontsizing2" id="s">Sunrise</p>
                 <div class="sun">
-                    <p id="timerise" class="fontsizing">06 : 08 AM</p>
+                    <p id="timerise" class="fontsizing"><?php echo $sunrise ?></p>
                 </div>
                 <p class="fontwhite fontsizing" id="s">Sunset</p>
                 <div class="sun">
-                    <p id="timeset" class="fontsizing">07 : 55 PM</p>
+                    <p id="timeset" class="fontsizing"><?php echo $sunset ?></p>
                 </div>
             </div>
         </div>
