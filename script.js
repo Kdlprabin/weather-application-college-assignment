@@ -1,9 +1,5 @@
-//51.8098° N, 0.2377° W
-let long = 0.2150;
-let lat = 51.9578;
-
 //api url
-var base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
+var base = `https://api.openweathermap.org/data/2.5/weather?q=Hertfordshire&appid=43aa310cf040eb7a9bc888de93a2c9dc&units=metric`;
 
 var info;
 //shows the time when the application was started
@@ -29,7 +25,7 @@ function refresh(){
         const desc = data.weather[0].description;
         const direction = data.wind.deg;
         info = data.weather[0].main;
-
+        
         document.querySelector('#temperature').textContent = `${temp.toFixed(1)}  °C`;
         document.querySelector('#timerise').textContent = `${sunriseGMT.toLocaleTimeString()}`;
         document.querySelector('#timeset').textContent = `${sunsetGMT.toLocaleTimeString()}`;
