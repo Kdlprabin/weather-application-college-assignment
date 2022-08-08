@@ -25,7 +25,6 @@ function getDate(){
     var monthNo = new Date().getMonth();
     var year = new Date().getFullYear();
     var days = new Date().getDate();
-    console.log(days)
 
     document.getElementById("month").innerHTML = list[monthNo];
     document.getElementById("year").innerHTML = ", "+year;

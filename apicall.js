@@ -21,7 +21,6 @@ const api = '43aa310cf040eb7a9bc888de93a2c9dc';
             const { temp } = data.main;
             const humidity = data.main.humidity;
             const sunriseKtm = (data.sys.sunrise);
-            console.log(Date(sunriseKtm))
 
             document.querySelector('#sectemperature1').textContent = `${temp.toFixed(2)} °C`;
             document.querySelector('#sechumidity1').textContent = `${humidity} %`;

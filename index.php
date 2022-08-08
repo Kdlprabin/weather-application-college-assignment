@@ -1,6 +1,6 @@
 <?php
 
-$googleApiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Hertfordshire&appid=43aa310cf040eb7a9bc888de93a2c9dc&units=metric";
+$googleApiUrl = "https://api.openweathermap.org/data/2.5/weather?q=hertfordshire&appid=43aa310cf040eb7a9bc888de93a2c9dc&units=metric";
 
 $ch = curl_init();
 curl_setopt($ch,CURLOPT_HEADER,0);
@@ -13,7 +13,6 @@ curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
 $response = curl_exec($ch);
 curl_close($ch);
 $data = json_decode($response);
-$currenttime =time();
 
 $temp = $data->main->temp;
 $feels_like = $data->main->feels_like;
@@ -26,14 +25,16 @@ $sunset = $data->sys->sunset;
 $desc = $data->weather[0]->description;
 
 
-$conn = new mysqli('localhost','root','','weatherapp_2.0','3307');
+$conn = new mysqli('localhost','root','','weatherapp_2.0','3306');
 if($conn->connect_error){
     die();
 }else{
-    $send_query = "INSERT INTO weather(main,temperature,feels_like,humidity,pressure,wind_speed,wind_degree,sunrise,sunset) VALUES('$desc','$temp','$feels_like','$humidity','$pressure','$wind_speed','$wind_degree','$sunrise','$sunset') ";
+    $send_query = "INSERT INTO weather(main,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
     $send = mysqli_query($conn,$send_query);
     if($send){
-    }else{ echo "data sending failed";}
+    }else{ 
+        echo "data sending failed";
+    }
 }
 ?>
 
@@ -47,7 +48,7 @@ if($conn->connect_error){
     <link rel="stylesheet" href="searchSection.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="refresh();">
+<body>
     <!-- main part of the weather app  -->
     <div id="main">
         <div class="container1">
