@@ -29,11 +29,5 @@ $conn = new mysqli('localhost','root','','weatherapp_2.0','3306');
 if($conn->connect_error){
     die();
 }else{
-    $send_query = "INSERT INTO weather(main,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
-    $send = mysqli_query($conn,$send_query);
-    if($send){
-    }else{ 
-        echo "data sending failed";
-    }
 }
 ?>

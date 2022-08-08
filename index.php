@@ -1,8 +1,17 @@
 <?php
-
 include('datasend.php');
-
 if(isset($_GET['refresh'])){
+    $send_query = "INSERT INTO weather(main,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
+    $send = mysqli_query($conn,$send_query);
+    if($send){
+    }else{ 
+        echo "data sending failed";
+    }
+}else{
+    $send_query="SELECT * FROM weather order by id desc";
+    $sql_getdata_query = mysqli_query($conn,$send_query);
+	$rowdata = mysqli_fetch_object($sql_getdata_query);
+    
 }
 ?>
 
@@ -23,7 +32,7 @@ if(isset($_GET['refresh'])){
             <!--the left located boxes-->
             <div class="infoBox infoBox1">
                 <!--temperature data in celsius-->
-                <p class="fontsizinglarge" id="temperature"><?php echo $temp.'°C' ?></p>
+                <p class="fontsizinglarge" id="temperature"><?php print_r($rowdata->temperature.'°C') ?></p>
                 <p id="day" class="fontsizing2">THU</p>
                 <div class="fontsizing"><span id="month">_ _ _</span> <span id="days">_ _</span><span id="year"> _ _ _ _</span></div>
             </div>
@@ -76,28 +85,28 @@ if(isset($_GET['refresh'])){
                     <P class="fontwhite fontsizesmall title">WIND SPEED</P>
                     <hr class="whiteline">
                     <div class="value1">
-                        <img src="images/wind.png" alt="" class="icon"><div id="divide"><span id="windspeed" class="fontwhite"><?php echo $wind_speed.' m/s' ?></span><span id="windDirection"><?php echo $wind_degree.' deg' ?></span></div>
+                        <img src="images/wind.png" alt="" class="icon"><div id="divide"><span id="windspeed" class="fontwhite"><?php print_r($rowdata->wind_speed.' m/s') ?></span><span id="windDirection"><?php print_r($rowdata->wind_deg.' deg') ?></span></div>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">PRESSURE</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/pressure.png" alt="" class="icon"><span id="pressure" class="fontsizing fontwhite"><?php echo $pressure.' hpa' ?></span>
+                        <img src="images/pressure.png" alt="" class="icon"><span id="pressure" class="fontsizing fontwhite"><?php print_r($rowdata->pressure.' hpa') ?></span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">HUMIDITY</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/humidity.png" alt="" class="icon"><span id="humidity" class="fontsizing fontwhite"><?php echo $humidity.' %' ?></span>
+                        <img src="images/humidity.png" alt="" class="icon"><span id="humidity" class="fontsizing fontwhite"><?php print_r($rowdata->humidity.' %') ?></span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">FEELS LIKE</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/uv.png" alt="" class="icon"><span id="feels_like" class="fontsizing fontwhite"><?php echo $feels_like.' °C' ?></span>
+                        <img src="images/uv.png" alt="" class="icon"><span id="feels_like" class="fontsizing fontwhite"><?php print_r($rowdata->feels_like.' °C') ?></span>
                     </div>
                 </div>
             </div>
@@ -112,7 +121,7 @@ if(isset($_GET['refresh'])){
                 <p class="fontsizing2 fontwhite"> North Hertfordshire</p>
                 <hr class="whiteline">
                 <p class="fontsizing2 fontwhite">UK, EUROPE</p>
-                <p id="main_weather_data" class="fontsizing"><?php echo $desc ?></p>
+                <p id="main_weather_data" class="fontsizing"><?php print_r($rowdata->main) ?></p>
             </div>
             <!--Rain chance here-->
             <div id="chanceBox">
@@ -130,11 +139,11 @@ if(isset($_GET['refresh'])){
             <div id="sun">
                 <p class="fontwhite fontsizing2" id="s">Sunrise</p>
                 <div class="sun">
-                    <p id="timerise" class="fontsizing"><?php echo $sunrise ?></p>
+                    <p id="timerise" class="fontsizing"><?php  print_r($rowdata->sunrise) ?></p>
                 </div>
                 <p class="fontwhite fontsizing" id="s">Sunset</p>
                 <div class="sun">
-                    <p id="timeset" class="fontsizing"><?php echo $sunset ?></p>
+                    <p id="timeset" class="fontsizing"><?php print_r($rowdata->sunset) ?></p>
                 </div>
             </div>
         </div>
@@ -172,9 +181,9 @@ if(isset($_GET['refresh'])){
         </div>
         <div id="RefreshDiv">
             <button id="refresh"><a href="?refresh=<?php echo "1"?>" id="refreshvalue">Refresh</a></button>
-            <p>Last refreshed:</p><span id="LastRefreshed"></span>
+            <p>Last refreshed:</p><span id="LastRefreshed"><?php print_r($rowdata->refresh_time) ?></span>
         </div>
-        <p style="text-align:center">| made by | prabin kandel |</p>
+        <p style="text-align:center"> &copy;copyrights reserved by prabin kandel</p>
     </div>
     <script src="apicall.js"></script>
     <script src="clock.js"></script>
