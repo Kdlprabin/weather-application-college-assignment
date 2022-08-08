@@ -1,6 +1,7 @@
 <?php
 include('datasend.php');
 if(isset($_GET['refresh'])){
+    header('location:index.php');
     $send_query = "INSERT INTO weather(main,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
     $send = mysqli_query($conn,$send_query);
     if($send){
@@ -183,7 +184,7 @@ if(isset($_GET['refresh'])){
             <button id="refresh"><a href="?refresh=<?php echo "1"?>" id="refreshvalue">Refresh</a></button>
             <p>Last refreshed:</p><span id="LastRefreshed"><?php print_r($rowdata->refresh_time) ?></span>
         </div>
-        <p style="text-align:center"> &copy;copyrights reserved by prabin kandel</p>
+        <p style="text-align:center"> &copy;copyrights reserved by<br> Prabin Kandel</p>
     </div>
     <script src="apicall.js"></script>
     <script src="clock.js"></script>
