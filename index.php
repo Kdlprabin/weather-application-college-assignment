@@ -1,39 +1,17 @@
 <?php
-
-$googleApiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Hertfordshire&appid=43aa310cf040eb7a9bc888de93a2c9dc&units=metric";
-
-$ch = curl_init();
-curl_setopt($ch,CURLOPT_HEADER,0);
-curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-curl_setopt($ch,CURLOPT_URL,$googleApiUrl);
-curl_setopt($ch,CURLOPT_FOLLOWLOCATION,1);
-curl_setopt($ch,CURLOPT_VERBOSE,0);
-curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-
-$response = curl_exec($ch);
-curl_close($ch);
-$data = json_decode($response);
-$currenttime =time();
-
-$temp = $data->main->temp;
-$feels_like = $data->main->feels_like;
-$pressure = $data->main->pressure;
-$humidity = $data->main->humidity;
-$wind_speed = $data->wind->speed;
-$wind_degree = $data->wind->deg;
-$sunrise = $data->sys->sunrise;
-$sunset = $data->sys->sunset;
-$desc = $data->weather[0]->description;
-
-
-$conn = new mysqli('localhost','root','','weatherapp_2.0','3307');
-if($conn->connect_error){
-    die();
-}else{
-    $send_query = "INSERT INTO weather(main,temperature,feels_like,humidity,pressure,wind_speed,wind_degree,sunrise,sunset) VALUES('$desc','$temp','$feels_like','$humidity','$pressure','$wind_speed','$wind_degree','$sunrise','$sunset') ";
+include('datasend.php');
+if(isset($_GET['refresh'])){
+    $send_query = "INSERT INTO weather(main,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
     $send = mysqli_query($conn,$send_query);
     if($send){
-    }else{ echo "data sending failed";}
+    }else{ 
+        echo "data sending failed";
+    }
+}else{
+    $send_query="SELECT * FROM weather order by id desc";
+    $sql_getdata_query = mysqli_query($conn,$send_query);
+	$rowdata = mysqli_fetch_object($sql_getdata_query);
+    
 }
 ?>
 
@@ -47,14 +25,14 @@ if($conn->connect_error){
     <link rel="stylesheet" href="searchSection.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="refresh();">
+<body>
     <!-- main part of the weather app  -->
     <div id="main">
         <div class="container1">
             <!--the left located boxes-->
             <div class="infoBox infoBox1">
                 <!--temperature data in celsius-->
-                <p class="fontsizinglarge" id="temperature"><?php echo $temp.'°C' ?></p>
+                <p class="fontsizinglarge" id="temperature"><?php print_r($rowdata->temperature.'°C') ?></p>
                 <p id="day" class="fontsizing2">THU</p>
                 <div class="fontsizing"><span id="month">_ _ _</span> <span id="days">_ _</span><span id="year"> _ _ _ _</span></div>
             </div>
@@ -107,28 +85,28 @@ if($conn->connect_error){
                     <P class="fontwhite fontsizesmall title">WIND SPEED</P>
                     <hr class="whiteline">
                     <div class="value1">
-                        <img src="images/wind.png" alt="" class="icon"><div id="divide"><span id="windspeed" class="fontwhite"><?php echo $wind_speed.' m/s' ?></span><span id="windDirection"><?php echo $wind_degree.' deg' ?></span></div>
+                        <img src="images/wind.png" alt="" class="icon"><div id="divide"><span id="windspeed" class="fontwhite"><?php print_r($rowdata->wind_speed.' m/s') ?></span><span id="windDirection"><?php print_r($rowdata->wind_deg.' deg') ?></span></div>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">PRESSURE</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/pressure.png" alt="" class="icon"><span id="pressure" class="fontsizing fontwhite"><?php echo $pressure.' hpa' ?></span>
+                        <img src="images/pressure.png" alt="" class="icon"><span id="pressure" class="fontsizing fontwhite"><?php print_r($rowdata->pressure.' hpa') ?></span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">HUMIDITY</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/humidity.png" alt="" class="icon"><span id="humidity" class="fontsizing fontwhite"><?php echo $humidity.' %' ?></span>
+                        <img src="images/humidity.png" alt="" class="icon"><span id="humidity" class="fontsizing fontwhite"><?php print_r($rowdata->humidity.' %') ?></span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">FEELS LIKE</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/uv.png" alt="" class="icon"><span id="feels_like" class="fontsizing fontwhite"><?php echo $feels_like.' °C' ?></span>
+                        <img src="images/uv.png" alt="" class="icon"><span id="feels_like" class="fontsizing fontwhite"><?php print_r($rowdata->feels_like.' °C') ?></span>
                     </div>
                 </div>
             </div>
@@ -143,7 +121,7 @@ if($conn->connect_error){
                 <p class="fontsizing2 fontwhite"> North Hertfordshire</p>
                 <hr class="whiteline">
                 <p class="fontsizing2 fontwhite">UK, EUROPE</p>
-                <p id="main_weather_data" class="fontsizing"><?php echo $desc ?></p>
+                <p id="main_weather_data" class="fontsizing"><?php print_r($rowdata->main) ?></p>
             </div>
             <!--Rain chance here-->
             <div id="chanceBox">
@@ -161,11 +139,11 @@ if($conn->connect_error){
             <div id="sun">
                 <p class="fontwhite fontsizing2" id="s">Sunrise</p>
                 <div class="sun">
-                    <p id="timerise" class="fontsizing"><?php echo $sunrise ?></p>
+                    <p id="timerise" class="fontsizing"><?php  print_r($rowdata->sunrise) ?></p>
                 </div>
                 <p class="fontwhite fontsizing" id="s">Sunset</p>
                 <div class="sun">
-                    <p id="timeset" class="fontsizing"><?php echo $sunset ?></p>
+                    <p id="timeset" class="fontsizing"><?php print_r($rowdata->sunset) ?></p>
                 </div>
             </div>
         </div>
@@ -202,10 +180,10 @@ if($conn->connect_error){
             <hr>
         </div>
         <div id="RefreshDiv">
-            <button id="refresh" onclick="refresh();">Refresh</button>
-            <p>Last refreshed:</p><span id="LastRefreshed"></span>
+            <button id="refresh"><a href="?refresh=<?php echo "1"?>" id="refreshvalue">Refresh</a></button>
+            <p>Last refreshed:</p><span id="LastRefreshed"><?php print_r($rowdata->refresh_time) ?></span>
         </div>
-        <p style="text-align:center">| made by | prabin kandel |</p>
+        <p style="text-align:center"> &copy;copyrights reserved by prabin kandel</p>
     </div>
     <script src="apicall.js"></script>
     <script src="clock.js"></script>

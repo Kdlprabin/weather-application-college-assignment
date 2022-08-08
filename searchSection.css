@@ -9,6 +9,14 @@
     padding: 1%;
     text-align: center;
 }
+#refreshvalue{
+    text-decoration: none;
+    color: white;
+}
+#refreshvalue:hover{
+    text-decoration: none;
+    color: #00147B;
+}
 #refresh{
     padding: 1% 5% 1%;
     border: 1px solid black;
