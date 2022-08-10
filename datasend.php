@@ -13,7 +13,7 @@ curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
 $response = curl_exec($ch);
 curl_close($ch);
 $data = json_decode($response);
-
+$main = $data->weather[0]->main;
 $temp = $data->main->temp;
 $feels_like = $data->main->feels_like;
 $pressure = $data->main->pressure;
@@ -24,8 +24,7 @@ $sunrise = $data->sys->sunrise;
 $sunset = $data->sys->sunset;
 $desc = $data->weather[0]->description;
 
-
-$conn = new mysqli('localhost','root','','weatherapp_2.0','3306');
+$conn = new mysqli('localhost','root','Chitwannepal#4','weatherapp','3306');
 if($conn->connect_error){
     die();
 }else{

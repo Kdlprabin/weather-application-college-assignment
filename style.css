@@ -43,7 +43,7 @@ body{
     grid-template-rows: 0.6fr 1fr 0.6fr;
 }
 .container2{
-    background-image: url(images/ThunderStorm.jpg);
+    background-image: url(images/clearsky.jpg);
     background-repeat: no-repeat;
     border-radius: 5px;
     display: grid;
