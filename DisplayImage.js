@@ -44,7 +44,7 @@ function changeImage(){
         displayImage("url('images/rainClouds.jpg')")
     }
     else{
-        displayImage("url('images/clearsky.jpg')")
+        displayImage("url('images/ThunderStorm.jpg')")
     }
 
     setTimeout(()=>{changeImage(),60000})
