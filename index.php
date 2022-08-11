@@ -1,16 +1,26 @@
 <?php
+
+//using the datasend.php in here
 include('datasend.php');
-if (isset($_GET['refresh'])) {
+
+$get_query = "SELECT * FROM weather order by id desc";
+$send_query = "INSERT INTO weather(main,descript,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$main','$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
+//if the refresh button is pressed
+if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0)) {
+    //take to index.php
     header('location:index.php');
-    $send_query = "INSERT INTO weather(main,descript,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$main','$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
+
+    //insert query
     $send = mysqli_query($conn, $send_query);
     if ($send) {
     } else {
         echo "data sending failed";
     }
 } else {
-    $send_query = "SELECT * FROM weather order by id desc";
-    $sql_getdata_query = mysqli_query($conn, $send_query);
+
+    //get data from database: weatherapp
+
+    $sql_getdata_query = mysqli_query($conn, $get_query);
     $rowdata = mysqli_fetch_object($sql_getdata_query);
 }
 ?>
@@ -167,7 +177,7 @@ if (isset($_GET['refresh'])) {
                 </div>
                 <p class="fontwhite fontsizing" id="s">Sunset</p>
                 <div class="sun">
-                    <p id="timeset" class="fontsizing"><?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunset))[1] . " AM") ?></p>
+                    <p id="timeset" class="fontsizing"><?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunset))[1] . " PM") ?></p>
                 </div>
             </div>
         </div>
