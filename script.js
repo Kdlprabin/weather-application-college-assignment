@@ -42,3 +42,6 @@
 // }
 
 // changes the time in got from database in milliseconds in proper time format
+
+
+//editing section of the information boxes

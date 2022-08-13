@@ -33,7 +33,6 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weatheria</title>
-    <link rel="stylesheet" href="mediaQueries.css">
     <link rel="stylesheet" href="searchSection.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -50,7 +49,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 <div class="fontsizing"><span id="month">_ _ _</span> <span id="days">_ _</span><span id="year"> _ _ _ _</span></div>
             </div>
             <div class="infoBox">
-                <p class="fontsizing">Kathmandu</p>
+                <p class="fontsizing">Kathmandu <button onclick="edit('edit1')"><a href="?edit=<?php echo "1" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;" > edit</a> </button></p>
                 <hr class="blueline">
                 <div class="secondary_info">
                     <div class="secondaryhumidity">
@@ -62,7 +61,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 </div>
             </div>
             <div class="infoBox">
-                <p class="fontsizing">New Delhi</p>
+                <p class="fontsizing">New Delhi <button  onclick="edit('edit2')"><a href="?edit=<?php echo "2" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a></button> </p>
                 <hr class="blueline">
                 <div class="secondary_info">
                     <div class="secondaryhumidity">
@@ -74,7 +73,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 </div>
             </div>
             <div class="infoBox">
-                <p class="fontsizing">London</p>
+                <p class="fontsizing">London <button onclick="edit('edit3');"> <a href="?edit=<?php echo "3" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a> </button></p>
                 <hr class="blueline">
                 <div class="secondary_info">
                     <div class="secondaryhumidity">
@@ -223,12 +222,15 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
     <script src="apicall.js"></script>
     <script src="clock.js"></script>
     <script>
-        <?php
-        echo "var info = '$rowdata->main'";
-        ?>
+        <?php echo "var info = '$rowdata->main'"; ?>
     </script>
     <script src="DisplayImage.js"></script>
     <script src="searchbox.js"></script>
+    <script>
+        function edit(id) {
+            console.log(id);
+        }
+    </script>
 </body>
 
 </html>
