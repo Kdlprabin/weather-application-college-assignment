@@ -1,18 +1,7 @@
 <?php
-
 //using the datasend.php in here
 include('datasend.php');
 //editing the first container boxes to show the value of different locations
-if (isset($_GET['edit'])) {
-    if($_GET['edit']){ ?>
-    <script>
-        window.localStorage.removeItem(<?php echo "place".$_GET['edit']?>);
-        window.localStorage.setItem(<?php echo "place".$_GET['edit']?>,<?php echo "edit".$_POST['edit']?>);
-    </script>
-    <?php
-    }
-    // header("location:index.php");
-}
 if (isset($_GET['edit3'])) {
     $edit3 = $_GET['edit3'];
 }
@@ -22,7 +11,6 @@ if (isset($_GET['edit2'])) {
 if (isset($_GET['edit1'])) {
     $edit1 = $_GET['edit1'];
 }
-
 //fetching the data query
 $get_query = "SELECT * FROM weather order by id desc";
 $send_query = "INSERT INTO weather(main,descript,temperature,humidity,pressure,wind_speed,wind_deg,feels_like,sunrise,sunset) VALUES ('$main','$desc','$temp','$humidity','$pressure','$wind_speed','$wind_degree','$feels_like','$sunrise','$sunset')";
@@ -37,9 +25,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
         echo "data sending failed";
     }
 } else {
-
     //get data from database: weatherapp
-
     $sql_getdata_query = mysqli_query($conn, $get_query);
     $rowdata = mysqli_fetch_object($sql_getdata_query);
 }
@@ -57,7 +43,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="initialvalues()">
+<body>
     <!-- main part of the weather app  -->
     <div id="main">
         <div class="container1">
@@ -71,13 +57,12 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
             <div class="infoBox">
                 <p class="fontsizing">
                     <?php if (isset($edit1)) { ?>
-                        <form method="get" action=""><input type="text" name="place1" placeholder="enter the place">
-                            <button type="button" name="submit_place1"><a href="?edit=<?php echo "1" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
-                        </form><?php
-                            } else { ?>
-                        <span class="fontsizing" id="place1">Kathmandu
-                        </span>
-                            <button><a href="?edit1=<?php echo "1" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a></button>
+                <form method="get" action=""><input type="text" name="place_input1" placeholder="enter the place" id="place_input1">
+                    <button type="button" name="submit_place1" onclick="changeValue();"><a href="?edit=<?php echo "1" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
+                </form><?php
+                    } else { ?>
+                <span class="fontsizing" id="place1">Kathmandu</span>
+                <button><a href="?edit1=<?php echo "1" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a></button>
                 </p>
             <?php } ?>
             <hr class="blueline">
@@ -93,12 +78,12 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
             <div class="infoBox">
                 <p class="fontsizing">
                     <?php if (isset($edit2)) { ?>
-                <form method="get" action=""><input type="text" name="place2" placeholder="enter the place">
-                    <button type="button" name="submit_place2"><a href="?edit=<?php echo "2" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
+                <form method="get" action=""><input type="text" name="place_input2" placeholder="enter the place" id="place_input2">
+                    <button type="button" name="submit_place2"  onclick="changeValue();"><a href="?edit=<?php echo "2" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
                 </form><?php
                     } else { ?>
                 <span class="fontsizing" id="place2">New Delhi</span>
-                    <button><a href="?edit2=<?php echo "2" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a></button>
+                <button><a href="?edit2=<?php echo "2" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a></button>
                 </p>
             <?php } ?>
             <hr class="blueline">
@@ -114,12 +99,12 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
             <div class="infoBox">
                 <p class="fontsizing">
                     <?php if (isset($edit3)) { ?>
-                <form method="get" action=""><input type="text" name="place3" placeholder="enter the place">
-                    <button type="button" name="submit_place3"><a href="?edit=<?php echo "3" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
+                <form method="get" action=""><input type="text" name="place_input3" placeholder="enter the place" id="place_input3">
+                    <button type="button" name="submit_place3"  onclick="changeValue();"><a href="?edit=<?php echo "3" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
                 </form><?php
                     } else { ?>
-                <span class="fontsizing" id="place1">London</span>
-                    <button> <a href="?edit3=<?php echo "3" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a> </button>
+                <span class="fontsizing" id="place3">London</span>
+                <button> <a href="?edit3=<?php echo "3" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> edit</a> </button>
                 </p>
             <?php } ?>
             <hr class="blueline">
@@ -272,19 +257,24 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
     <script>
         <?php echo "var info = '$rowdata->main'"; ?>
 
-        function initialvalues() {
             window.localStorage.setItem("place1", "Kathmandu");
             window.localStorage.setItem("place2", "New Delhi");
             window.localStorage.setItem("place3", "London");
+        function changeValue(){
+            <?php if (isset($_GET['edit'])) { ?>
+                console.log("<?php $_GET['edit'] ?>");
+                window.localStorage.removeItem("<?php echo "place" . $_GET['edit'] ?>");
+                window.localStorage.setItem(<?php echo "place".$_GET['edit'] ?>, document.getElementById("<?php echo "place_input".$_GET['edit'] ?>").value);
+            <?php
         }
-
+        // header("location:index.php");
+        ?>
+        }
+        
         document.getElementById("place1").textContent = window.localStorage.getItem("place1");
-
-
         document.getElementById("place2").textContent = window.localStorage.getItem("place2");
-
-
         document.getElementById("place3").textContent = window.localStorage.getItem("place3");
+
     </script>
     <script src="DisplayImage.js"></script>
     <script src="searchbox.js"></script>
