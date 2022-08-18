@@ -50,7 +50,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
             <!--the left located boxes-->
             <div class="infoBox infoBox1">
                 <!--temperature data in celsius-->
-                <p class="fontsizinglarge" id="temperature"><?php print_r($rowdata->temperature . '°C') ?></p>
+                <p class="fontsizinglarge" id="temperature">_ _ </p>
                 <p id="day" class="fontsizing2">THU</p>
                 <div class="fontsizing"><span id="month">_ _ _</span> <span id="days">_ _</span><span id="year"> _ _ _ _</span></div>
             </div>
@@ -143,28 +143,28 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                     <hr class="whiteline">
                     <div class="value1">
                         <img src="images/wind.png" alt="" class="icon">
-                        <div id="divide"><span id="windspeed" class="fontwhite"><?php print_r($rowdata->wind_speed . ' m/s') ?></span><span id="windDirection"><?php print_r($rowdata->wind_deg . ' deg') ?></span></div>
+                        <div id="divide"><span id="windspeed" class="fontwhite">_ _ ?></span><span id="windDirection">_ _</span></div>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">PRESSURE</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/pressure.png" alt="" class="icon"><span id="pressure" class="fontsizing fontwhite"><?php print_r($rowdata->pressure . ' hpa') ?></span>
+                        <img src="images/pressure.png" alt="" class="icon"><span id="pressure" class="fontsizing fontwhite">_ _</span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">HUMIDITY</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/humidity.png" alt="" class="icon"><span id="humidity" class="fontsizing fontwhite"><?php print_r($rowdata->humidity . ' %') ?></span>
+                        <img src="images/humidity.png" alt="" class="icon"><span id="humidity" class="fontsizing fontwhite">_ _</span>
                     </div>
                 </div>
                 <div class="element">
                     <P class="fontwhite fontsizesmall title">FEELS LIKE</P>
                     <hr class="whiteline">
                     <div class="value">
-                        <img src="images/uv.png" alt="" class="icon"><span id="feels_like" class="fontsizing fontwhite"><?php print_r($rowdata->feels_like . ' °C') ?></span>
+                        <img src="images/uv.png" alt="" class="icon"><span id="feels_like" class="fontsizing fontwhite">_ _</span>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 <p class="fontsizing2 fontwhite"> North Hertfordshire</p>
                 <hr class="whiteline">
                 <p class="fontsizing2 fontwhite">UK, EUROPE</p>
-                <p id="main_weather_data" class="fontsizing"><?php print_r($rowdata->descript) ?></p>
+                <p id="main_weather_data" class="fontsizing">_ _</p>
             </div>
             <!--Rain chance here-->
             <div id="chanceBox">
@@ -205,11 +205,11 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
             <div id="sun">
                 <p class="fontwhite fontsizing2" id="s">Sunrise</p>
                 <div class="sun">
-                    <p id="timerise" class="fontsizing"><?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunrise))[1] . " AM") ?></p>
+                    <p id="timerise" class="fontsizing">_ _</p>
                 </div>
                 <p class="fontwhite fontsizing" id="s">Sunset</p>
                 <div class="sun">
-                    <p id="timeset" class="fontsizing"><?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunset))[1] . " PM") ?></p>
+                    <p id="timeset" class="fontsizing">_ _</p>
                 </div>
             </div>
         </div>
@@ -275,6 +275,35 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
         document.getElementById("place2").textContent = window.localStorage.getItem("place2");
         document.getElementById("place3").textContent = window.localStorage.getItem("place3");
 
+        //function to set all the weather information to the local storage
+        function updateData(){
+            <?php if($conn->connect_error){?>
+            window.localStorage.setItem("temperature","<?php print_r($rowdata->temperature . '°C') ?>");
+            window.localStorage.setItem("windSpeed","<?php print_r($rowdata->wind_speed . ' m/s') ?>");
+            window.localStorage.setItem("windDirection","<?php print_r($rowdata->wind_deg . ' m/s') ?>");
+            window.localStorage.setItem("pressure","<?php print_r($rowdata->pressure . ' hpa') ?>");
+            window.localStorage.setItem("humidity","<?php print_r($rowdata->humidity . ' %') ?>");
+            window.localStorage.setItem("feelsLike","<?php print_r($rowdata->feels_like . ' °C') ?>");
+            window.localStorage.setItem("description","<?php print_r($rowdata->descript) ?>");
+            window.localStorage.setItem("sunrise","<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunrise))[1] . " AM") ?>");
+            window.localStorage.setItem("sunset","<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunset))[1] . " PM") ?>");
+            <?php } ?>
+            //reruns the function in 5 mins
+            setTimeout(() => {
+                updateData()
+            }, 5000);
+        }
+        updateData();
+        //setting all the values in the dom
+        document.querySelector('#temperature').textContent = window.localStorage.getItem("temperature");
+        document.querySelector('#timerise').textContent = window.localStorage.getItem("sunrise");
+        document.querySelector('#timeset').textContent = window.localStorage.getItem("sunset");
+        document.querySelector('#humidity').textContent = window.localStorage.getItem("humidity");
+        document.querySelector('#pressure').textContent = window.localStorage.getItem("pressure");
+        document.querySelector('#windspeed').textContent = window.localStorage.getItem("windSpeed");
+        document.querySelector('#feels_like').textContent = window.localStorage.getItem("feelsLike");
+        document.querySelector('#main_weather_data').textContent = window.localStorage.getItem("description");
+        document.querySelector('#windDirection').textContent = window.localStorage.getItem("windDirection");
     </script>
     <script src="DisplayImage.js"></script>
     <script src="searchbox.js"></script>
