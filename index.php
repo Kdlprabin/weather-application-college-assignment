@@ -33,7 +33,6 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
 
 <!-- send information about the weather condition to displayImage.js -->
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -277,7 +276,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
 
         //function to set all the weather information to the local storage
         function updateData(){
-            <?php if($conn->connect_error){?>
+            <?php if(!$conn->connect_error){?>
             window.localStorage.setItem("temperature","<?php print_r($rowdata->temperature . '°C') ?>");
             window.localStorage.setItem("windSpeed","<?php print_r($rowdata->wind_speed . ' m/s') ?>");
             window.localStorage.setItem("windDirection","<?php print_r($rowdata->wind_deg . ' m/s') ?>");

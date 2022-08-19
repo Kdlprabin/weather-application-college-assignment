@@ -39,7 +39,7 @@ $conn = new mysqli('localhost','root','Chitwannepal#4');
 $conn->query("CREATE DATABASE weatherapp");
 
 //establishing connection with database( weatherapp )
-$conn = new mysqli('localhost','root','Chitwannepal#4','weatherapp','3306');
+$conn = new mysqli('localhost','root','Chitwannepal#4','weatherapp');
 
 $conn->query("CREATE TABLE `weather` (
     `id` int NOT NULL AUTO_INCREMENT,
