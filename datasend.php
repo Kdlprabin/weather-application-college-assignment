@@ -15,7 +15,6 @@ curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
 
 //executing curl
 $response = curl_exec($ch);
-
 //closing curl
 curl_close($ch);
 

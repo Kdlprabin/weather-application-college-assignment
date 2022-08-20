@@ -33,6 +33,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
 
 <!-- send information about the weather condition to displayImage.js -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +41,14 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
     <title>Weatheria</title>
     <link rel="stylesheet" href="searchSection.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --percentage1: 50%;
+            --percentage2: 70%;
+            --percentage3: 60%;
+            --percentage4: 50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -78,7 +87,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 <p class="fontsizing">
                     <?php if (isset($edit2)) { ?>
                 <form method="get" action=""><input type="text" name="place_input2" placeholder="enter the place" id="place_input2">
-                    <button type="button" name="submit_place2"  onclick="changeValue();"><a href="?edit=<?php echo "2" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
+                    <button type="button" name="submit_place2" onclick="changeValue();"><a href="?edit=<?php echo "2" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
                 </form><?php
                     } else { ?>
                 <span class="fontsizing" id="place2">New Delhi</span>
@@ -99,7 +108,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 <p class="fontsizing">
                     <?php if (isset($edit3)) { ?>
                 <form method="get" action=""><input type="text" name="place_input3" placeholder="enter the place" id="place_input3">
-                    <button type="button" name="submit_place3"  onclick="changeValue();"><a href="?edit=<?php echo "3" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
+                    <button type="button" name="submit_place3" onclick="changeValue();"><a href="?edit=<?php echo "3" ?>" style="text-decoration:NONE; font-size:0.5em;color:red;"> submit</a></button>
                 </form><?php
                     } else { ?>
                 <span class="fontsizing" id="place3">London</span>
@@ -256,36 +265,37 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
     <script>
         <?php echo "var info = '$rowdata->main'"; ?>
 
-            window.localStorage.setItem("place1", "Kathmandu");
-            window.localStorage.setItem("place2", "New Delhi");
-            window.localStorage.setItem("place3", "London");
-        function changeValue(){
+        window.localStorage.setItem("place1", "Kathmandu");
+        window.localStorage.setItem("place2", "New Delhi");
+        window.localStorage.setItem("place3", "London");
+
+        function changeValue() {
             <?php if (isset($_GET['edit'])) { ?>
                 console.log("<?php $_GET['edit'] ?>");
                 window.localStorage.removeItem("<?php echo "place" . $_GET['edit'] ?>");
-                window.localStorage.setItem(<?php echo "place".$_GET['edit'] ?>, document.getElementById("<?php echo "place_input".$_GET['edit'] ?>").value);
+                window.localStorage.setItem(<?php echo "place" . $_GET['edit'] ?>, document.getElementById("<?php echo "place_input" . $_GET['edit'] ?>").value);
             <?php
+            }
+            // header("location:index.php");
+            ?>
         }
-        // header("location:index.php");
-        ?>
-        }
-        
+
         document.getElementById("place1").textContent = window.localStorage.getItem("place1");
         document.getElementById("place2").textContent = window.localStorage.getItem("place2");
         document.getElementById("place3").textContent = window.localStorage.getItem("place3");
 
         //function to set all the weather information to the local storage
-        function updateData(){
-            <?php if(!$conn->connect_error){?>
-            window.localStorage.setItem("temperature","<?php print_r($rowdata->temperature . '°C') ?>");
-            window.localStorage.setItem("windSpeed","<?php print_r($rowdata->wind_speed . ' m/s') ?>");
-            window.localStorage.setItem("windDirection","<?php print_r($rowdata->wind_deg . ' m/s') ?>");
-            window.localStorage.setItem("pressure","<?php print_r($rowdata->pressure . ' hpa') ?>");
-            window.localStorage.setItem("humidity","<?php print_r($rowdata->humidity . ' %') ?>");
-            window.localStorage.setItem("feelsLike","<?php print_r($rowdata->feels_like . ' °C') ?>");
-            window.localStorage.setItem("description","<?php print_r($rowdata->descript) ?>");
-            window.localStorage.setItem("sunrise","<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunrise))[1] . " AM") ?>");
-            window.localStorage.setItem("sunset","<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunset))[1] . " PM") ?>");
+        function updateData() {
+            <?php if (!$conn->connect_error) { ?>
+                window.localStorage.setItem("temperature", "<?php print_r($rowdata->temperature . '°C') ?>");
+                window.localStorage.setItem("windSpeed", "<?php print_r($rowdata->wind_speed . ' m/s') ?>");
+                window.localStorage.setItem("windDirection", "<?php print_r($rowdata->wind_deg . ' m/s') ?>");
+                window.localStorage.setItem("pressure", "<?php print_r($rowdata->pressure . ' hpa') ?>");
+                window.localStorage.setItem("humidity", "<?php print_r($rowdata->humidity . ' %') ?>");
+                window.localStorage.setItem("feelsLike", "<?php print_r($rowdata->feels_like . ' °C') ?>");
+                window.localStorage.setItem("description", "<?php print_r($rowdata->descript) ?>");
+                window.localStorage.setItem("sunrise", "<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunrise))[1] . " AM") ?>");
+                window.localStorage.setItem("sunset", "<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunset))[1] . " PM") ?>");
             <?php } ?>
             //reruns the function in 5 mins
             setTimeout(() => {
