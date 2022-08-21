@@ -19,11 +19,13 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
     //take to index.php
     header('location:index.php');
     //insert query
+    if(!$conn->connnect_error){
     $send = mysqli_query($conn, $send_query);
     if ($send) {
     } else {
         echo "data sending failed";
     }
+}
 } else {
     //get data from database: weatherapp
     $sql_getdata_query = mysqli_query($conn, $get_query);
@@ -294,7 +296,7 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 window.localStorage.setItem("humidity", "<?php print_r($rowdata->humidity . ' %') ?>");
                 window.localStorage.setItem("feelsLike", "<?php print_r($rowdata->feels_like . ' °C') ?>");
                 window.localStorage.setItem("description", "<?php print_r($rowdata->descript) ?>");
-                window.localStorage.setItem("sunrise", "<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunrise))[1] . " AM") ?>");
+                window.localStorage.setItem("sunrise", "<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunrise ))[1] . " AM") ?>");
                 window.localStorage.setItem("sunset", "<?php print_r(explode(' ', Date("Y-m-d H:i:s", $rowdata->sunset))[1] . " PM") ?>");
             <?php } ?>
             //reruns the function in 5 mins
@@ -302,7 +304,9 @@ if (isset($_GET['refresh']) or (mysqli_query($conn, $get_query)->num_rows == 0))
                 updateData()
             }, 5000);
         }
+        //calling the updateData function
         updateData();
+
         //setting all the values in the dom
         document.querySelector('#temperature').textContent = window.localStorage.getItem("temperature");
         document.querySelector('#timerise').textContent = window.localStorage.getItem("sunrise");
